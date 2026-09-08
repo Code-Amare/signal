@@ -1,0 +1,3 @@
+# For django
+backend/venv
+backend/.env
