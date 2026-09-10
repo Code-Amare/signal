@@ -1,0 +1,28 @@
+services:
+  backend:
+    depends_on:
+      - db
+    build: ./backend
+    ports:
+      - 8000:8000
+    
+    developer:
+      watch:
+        - path: ./backend/requirements.txt
+          action: rebuild
+        - path: ./backend
+          target: /app
+          action: sync
+
+
+
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - database:data/db
+
+
+volumes:
+  database:
