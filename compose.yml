@@ -6,7 +6,7 @@ services:
     ports:
       - 8000:8000
     
-    developer:
+    develop:
       watch:
         - path: ./backend/requirements.txt
           action: rebuild
@@ -20,9 +20,13 @@ services:
     image: postgres:latest
     ports:
       - 5432:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - database:data/db
+      - signal-db:/var/lib/postgresql/data
 
 
 volumes:
-  database:
+  signal-db:
